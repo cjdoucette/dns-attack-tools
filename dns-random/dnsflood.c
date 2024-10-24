@@ -420,6 +420,8 @@ int main(int argc, char **argv)
 		dns_header->id = random();
 		gen_random(r, random() % 127);
 		//printf("b: %s\n", qname);
+		if (strlen(r) < 10)
+			continue;
 		strcat(r, ".");
 		strcat(r, qname);
 		//printf("a: %s\n", r);
